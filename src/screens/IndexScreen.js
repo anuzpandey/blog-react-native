@@ -9,16 +9,16 @@ const IndexScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <StatusBar hidden/>
-            <TouchableOpacity onPress={addBlogPost} style={styles.button}>
-                <Text style={styles.buttonText}>ADD BLOG POST</Text>
-            </TouchableOpacity>
+            {/*<TouchableOpacity onPress={() => navigation.navigate('Create')} style={styles.button}>*/}
+            {/*    <Text style={styles.buttonText}>ADD BLOG POST</Text>*/}
+            {/*</TouchableOpacity>*/}
             <FlatList
                 data={state}
                 keyExtractor={(blogPost) => blogPost.title}
                 renderItem={({ item }) => {
                     return (
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('Show', {id: item.id})}
+                            onPress={() => navigation.navigate('Show', { id: item.id })}
                         >
                             <View style={styles.row}>
                                 <Text style={styles.postTitle}>{item.title}</Text>
@@ -38,6 +38,18 @@ const IndexScreen = ({ navigation }) => {
             />
         </View>
     );
+};
+
+IndexScreen.navigationOptions = ({ navigation }) => {
+    return {
+        headerRight: () => (
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Create')}
+            >
+                <Icon name="plus-circle" size={22}/>
+            </TouchableOpacity>
+        ),
+    };
 };
 
 const styles = StyleSheet.create({
