@@ -3,6 +3,9 @@
  */
 
 const colors = {
+    WHITE: '#FFFFFF',
+    BLACK: '#000000',
+    GREY: '#202020',
     RED: '#ed5564',
     DARK_RED: '#ed5f55',
     ORANGE: '#f57c4f',
