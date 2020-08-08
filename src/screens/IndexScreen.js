@@ -1,11 +1,27 @@
-import React, { useContext } from 'react';
-import { Text, View, StyleSheet, FlatList, TouchableOpacity, StatusBar } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { FlatList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Context } from '../context/BlogContext';
 import colors from '../config/colors';
 
 const IndexScreen = ({ navigation }) => {
-    const { state, deleteBlogPost } = useContext(Context);
+    const { state, deleteBlogPost, getBlogPosts } = useContext(Context);
+
+    useEffect(() => {
+        getBlogPosts();
+
+        // re-run getBlogPosts when navigate to Index Screen
+        const listener = navigation.addListener('didFocus', () => {
+            getBlogPosts();
+        });
+
+        // clean up listener when component is unmounted / otherwise results Memory Leak
+        return () => {
+            listener.remote();
+        };
+
+    }, []);
+
     return (
         <View style={styles.container}>
             <StatusBar hidden/>
