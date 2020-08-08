@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Text, View, ScrollView, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Context } from '../context/BlogContext';
 import colors from '../config/colors';
 
@@ -16,6 +16,14 @@ const ShowScreen = ({ navigation }) => {
             <View style={styles.categoryContainer}>
                 <Text style={[styles.blogCategory, styles.bgBlue]}>{blogPost.category}</Text>
                 <Text style={[styles.blogCategory, styles.bgGreen]}>{blogPost.category}</Text>
+            </View>
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Edit', { id: blogPost.id })}
+                    style={[styles.button, styles.btnSuccess]}
+                >
+                    <Text style={styles.buttonText}>EDIT BLOG</Text>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     );
@@ -66,6 +74,29 @@ const styles = StyleSheet.create({
     },
     bgBlue: {
         backgroundColor: colors.BLUE.CORNFLOWER,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 16,
+    },
+    btnSuccess: {
+        backgroundColor: colors.GREEN
+    },
+    btnDanger: {
+        backgroundColor: colors.RED
+    },
+    button: {
+        padding: 16,
+        alignItems: 'center',
+        borderRadius: 12,
+        margin: 8,
+        width: '40%'
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#fff',
     },
 });
 

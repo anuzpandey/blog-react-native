@@ -5,7 +5,7 @@ import { Context } from '../context/BlogContext';
 import colors from '../config/colors';
 
 const IndexScreen = ({ navigation }) => {
-    const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+    const { state, deleteBlogPost } = useContext(Context);
     return (
         <View style={styles.container}>
             <StatusBar hidden/>
